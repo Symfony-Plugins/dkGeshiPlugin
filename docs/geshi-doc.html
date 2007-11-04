@@ -143,9 +143,9 @@
 </head>
 <body>
 <h1 id="top">GeSHi Documentation</h1>
-<h5 style="text-align: center;">Version 1.0.7.15</h5>
+<h5 style="text-align: center;">Version 1.0.7.20</h5>
 <pre>Author:          Nigel McNie
-Copyright:       &copy; Nigel McNie, 2004
+Copyright:       &copy; 2004 - 2007 Nigel McNie
 Email:           <a href="mailto:nigel@geshi.org">nigel@geshi.org</a>
 GeSHi Website:   <a href="http://qbnz.com/highlighter">http://qbnz.com/highlighter</a></pre>
 
@@ -240,8 +240,9 @@ everything related to it (including this documentation) a breeze.</p>
 		<ul>
 			<li><a href="#setting-a-url">3.13.1 Setting a URL for a Keyword Group</a></li>
 			<li><a href="#disabling-urls">3.13.2 Disabling URLs for a Keyword Group</a></li>
-			<li><a href="#styling-links">3.13.3 Styling Links</a></li>
-			<li><a href="#using-targets">3.13.4 Setting the Link Target</a></li>
+            <li><a href="#disabling-all-urls">3.13.3 Disabling all URLs for Keywords</a></li>
+			<li><a href="#styling-links">3.13.4 Styling Links</a></li>
+			<li><a href="#using-targets">3.13.5 Setting the Link Target</a></li>
 		</ul>
 		<li><a href="#using-contextual-importance">3.14 Using Contextual Importance</a></li>
 		<li><a href="#highlighting-special-lines-extra">3.15 Highlighting Special Lines &quot;Extra&quot;</a></li>
@@ -1185,6 +1186,8 @@ it points to a valid folder. If it doesn't, that's your tough luck ;)</p>
 <h5 id="changing-the-charset">3.6.4: Changing the Character Set</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#error-handling">Next</a> | <a href="#changing-using-load-from-file">Previous</a></div>
 
+<div class="note"><div class="note-header">Note:</div><p>As of GeSHi 1.0.7.18, you don't need to use this, as htmlspecialchars is not being used due to a security flaw in it (that is unpatched in even the most recent PHP4 versions, and in PHP5 &lt; 5.2). As long as you set the encoding properly with a php <a href="http://php.net/header">header()</a> call, your foreign characters will be displayed correctly.</p></div>
+
 <p>As of version 1.0.3, you can use the method <strong><tt>set_encoding</tt></strong> to specify the character set that your
 source is in. Valid names are those names that are valid for the PHP function <tt><a href="http://www.php.net/htmlentities">htmlentities()</a></tt>:</p>
 
@@ -1206,7 +1209,7 @@ deciding which language to choose. You can use this to override GeSHi's default 
 you're after, or perhaps does have your extension but under a different language. The lookup array is of the form:</p>
 
 <pre>array(
-	 *   'lang_name' => array('extension', 'extension', ...),
+	 *   'lang_name' =&gt; array('extension', 'extension', ...),
 	 *   'lang_name' ...
 	 * );</pre>
 
@@ -1400,11 +1403,11 @@ and footers for your code, style them, and insert information from the highlight
 this GeSHi object. The keywords you can use are:</p>
 
 <ul>
-	<li><strong>&lt;TIME&gt;:</strong> Is replaced by the time it took for the <tt>parse_code</tt> method - i.e., how
+    <li><strong>&lt;TIME&gt;</strong> or <strong>{TIME}</strong>: Is replaced by the time it took for the <tt>parse_code</tt> method - i.e., how
 	long it took for your code to be highlighted. The time is returned to three decimal places.</li>
-	<li><strong>&lt;LANGUAGE&gt;:</strong> Is replaced by a nice, friendly version of the language name used to
+    <li><strong>&lt;LANGUAGE&gt;</strong> or <strong>{LANGUAGE}</strong>: Is replaced by a nice, friendly version of the language name used to
 	highlight this code.</li>
-	<li><strong>&lt;VERSION&gt;:</strong> The GeSHi version used to highlight the code.</li>
+    <li><strong>&lt;VERSION&gt;</strong> or <strong>{VERSION}</strong>: The GeSHi version used to highlight the code.</li>
 </ul>
 
 <h5 id="setting-header-content">3.12.2: Setting Header Content</h5>
@@ -1476,15 +1479,22 @@ to work out an appropriate URL (see the Java language file!). I hope to provide 
 the GeSHi website in the future.</p>
 
 <h5 id="disabling-urls">3.13.2: Disabling a URL for a Keyword Group</h5>
-<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#styling-links">Next</a> | <a href="#setting-a-url">Previous</a></div>
+<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#disabling-all-urls">Next</a> | <a href="#setting-a-url">Previous</a></div>
 
 <p>It's easy to disable a URL for a keyword group: Simply use the method <strong><tt>set_url_for_keyword_group</tt></strong> to pass an empty string
 as the URL:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_url_for_keyword_group</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$group</span>, <span style="color: #ff0000;">''</span><span style="color: #66cc66;">&#41;</span>;</code>
 
-<h5 id="styling-links">3.13.3: Styling Links</h5>
-<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#using-targets">Next</a> | <a href="#disabling-urls">Previous</a></div>
+<h5 id="disabling-all-urls">3.13.3 Disabling all URLs for Keywords</h6>
+<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#styling-links">Next</a> | <a href="#disabling-urls">Previous</a></div>
+
+<p>As of GeSHi 1.0.7.18, you can disable all URL linking for keywords:</p>
+
+<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">enable_keyword_links</span><span style="color: #66cc66;">&#40;</span><span style="color: #000; font-weight: bold;">false</span><span style="color: #66cc66;">&#41;</span>;</code>
+
+<h5 id="styling-links">3.13.4: Styling Links</h5>
+<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#using-targets">Next</a> | <a href="#disabling-all-urls">Previous</a></div>
 
 <p>You can also style the function links. You can style their default status, hovered, active and visited status.
 All of this is controlled by one method, <strong><tt>set_link_styles</tt></strong>:</p>
@@ -1503,7 +1513,7 @@ All of this is controlled by one method, <strong><tt>set_link_styles</tt></stron
 
 <p>And <var>$styles</var> is the stylesheet declarations to apply to the links.</p>
 
-<h5 id="using-targets">3.13.4: Setting the Link Target</h5>
+<h5 id="using-targets">3.13.5: Setting the Link Target</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#using-contextual-importance">Next</a> | <a href="#styling-links">Previous</a></div>
 
 <p>Perhaps you want to set the target of link attributes, so the manual pages open in a new window? Use the <strong><tt>set_link_target</tt></strong> method:</p>
@@ -2036,9 +2046,9 @@ result.</p>
  * Author: &lt;name&gt; (&lt;e-mail address&gt;)
  * Copyright: (c) 2004 &lt;name&gt; (&lt;website URL&gt;)
  * Release Version: 1.0.0
- * CVS Revision Version: $Revision: 1.16.2.5 $
+ * CVS Revision Version: $Revision: 995 $
  * Date Started: &lt;date started&gt;
- * Last Modified: $Date: 2006/09/23 02:05:46 $
+ * Last Modified: $Date: 2007-07-02 00:21:31 +1200 (Mon, 02 Jul 2007) $
  *
  * &lt;name-of-language&gt; language file for GeSHi.
  *
@@ -2102,8 +2112,8 @@ else *must* remain the same!</strong></p>
 	it with the date of the GeSHi release that it is first added to.</li>
 </ul>
 
-<p>Everything should remain the same, including <tt>$Revision: 1.16.2.5 $</tt> and <tt>$Date: 2006/09/23 02:05:46 $</tt> (I know these may
-look funny but they have their purpose for those of you who don't know about CVS).</p>
+<p>Everything should remain the same, including <tt>$Revision: 995 $</tt> and <tt>$Date: 2007-07-02 00:21:31 +1200 (Mon, 02 Jul 2007) $</tt> (I know these may
+look funny but they have their purpose for those of you who don't know about SVN).</p>
 
 <p><strong>Also:</strong> I'm not sure about the copyright on a new language file. I'm not a lawyer, could
 someone contact me about whether the copyright for a new language file should be exclusivly the authors,

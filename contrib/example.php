@@ -6,7 +6,7 @@
  * and the language files in subdirectory "../geshi/")
  * 
  * @author  Nigel McNie
- * @version $Id: example.php,v 1.5 2006/05/19 11:34:52 oracleshinoda Exp $
+ * @version $Id: example.php 117 2007-11-02 17:26:00Z hartym $
  */
 
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
