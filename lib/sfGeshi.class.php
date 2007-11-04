@@ -13,6 +13,7 @@ class sfGeshi extends GeSHi
 
   public function __construct($source, $language)
   {
+    $this->set_header_type(GESHI_HEADER_NONE);
     parent::__construct($source, $language);
   }
 
@@ -46,7 +47,7 @@ class sfGeshi extends GeSHi
     {
       if ($_path === null)
       {
-        self::getPluginPath() . '/geshi/';
+        $_path = self::getPluginPath() . '/geshi/';
       }
 
       $this->language_path = $_path;
