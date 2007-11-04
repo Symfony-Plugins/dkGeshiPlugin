@@ -13,7 +13,6 @@ class sfGeshi extends GeSHi
 
   public function __construct($source, $language)
   {
-    $this->set_header_type(GESHI_HEADER_NONE);
     parent::__construct($source, $language);
   }
 
