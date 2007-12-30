@@ -1,0 +1,20 @@
+dkGeshiPlugin
+=============
+
+Overview
+--------
+
+dkGeshiPlugin (old sfGeshiPlugin) wraps the PHP library GeSHi to silently integrates it in symfony.
+
+Contents
+--------
+
+- Last GeSHi distribution (http://qbnz.com/highlighter/)
+- dkGeshi class to deal with language listing, library paths and a bit more.
+
+
+License
+-------
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
