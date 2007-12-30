@@ -4,7 +4,14 @@ dkGeshiPlugin
 Overview
 --------
 
-dkGeshiPlugin (old sfGeshiPlugin) wraps the PHP library GeSHi to silently integrates it in symfony.
+dkGeshiPlugin (old sfGeshiPlugin) wraps the PHP library GeSHi to silently
+integrates it in symfony.
+
+To use dkGeshi, you should always make an external link to the branch of
+current stable GeSHi version. To view all branches, please look at
+http://trac.symfony-project.com/browser/plugins/dkGeshiPlugin/branches
+
+Branches names are made of {symfony-version}.{geshi-version}.{subrelease}
 
 Contents
 --------
@@ -18,3 +25,8 @@ License
 
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
+
+Changelog
+---------
+
+* 1.0.1_0_7_20.0: initial dkGeshiPlugin move from sfGeshiPlugin
