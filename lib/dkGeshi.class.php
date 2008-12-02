@@ -17,13 +17,14 @@ class dkGeshi extends GeSHi
     parent::__construct($source, $language);
   }
 
-
   public static function getPluginPath()
   {
+    $sfRootDir = defined('SF_ROOT_DIR')?SF_ROOT_DIR:sfConfig::get('sf_root_dir');
+
     if (self::$plugin_path === null)
     {
       $_tmp = array_reverse(explode('/', realpath(dirname(__FILE__))));
-      self::$plugin_path = SF_ROOT_DIR . '/plugins/' . $_tmp[1];
+      self::$plugin_path = $sfRootDir.'/plugins/'.$_tmp[1];
     }
 
     return self::$plugin_path;
